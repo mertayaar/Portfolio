@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test name="GoRest User API Test">
+        <classes>
+        <class name="API_Testing.GoRestUser_API"> </class></classes>
+    </test>
+</suite>
