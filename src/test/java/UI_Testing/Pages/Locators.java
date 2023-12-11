@@ -71,7 +71,6 @@ public class Locators extends UI_Methods {
     private WebElement alertSuccess;
 
 
-
     @FindBy(id = "message")
     private WebElement contactMessageInput;
 
@@ -133,7 +132,7 @@ public class Locators extends UI_Methods {
     @FindBy(css = "span[class='cat-name']")
     private WebElement categoryOfProducts;
 
-    @FindBy(css="span[title='Close window']")
+    @FindBy(css = "span[title='Close window']")
     private WebElement closeWindow;
 
     @FindBy(xpath = "(//div[@class='product-container'])[1]")
@@ -240,17 +239,34 @@ public class Locators extends UI_Methods {
     private WebElement selectProductOption;
 
     // Kill Process
-    @FindBy(css="a[title='Manage my personal information']")
+    @FindBy(css = "a[title='Manage my personal information']")
     private WebElement personalInformation;
 
-    @FindBy(id="old_passwd")
+    @FindBy(id = "old_passwd")
     private WebElement currentPasswordInput;
 
-    @FindBy(id="confirmation")
+    @FindBy(id = "confirmation")
     private WebElement confirmPassword;
 
     @FindBy(css = "button[name='submitIdentity']")
     private WebElement saveButton;
+
+    // JDBC
+
+    @FindBy(css = "a[class='product-name']")
+    private List<WebElement> productNames;
+
+    @FindBy(css = "span[itemprop='price']")
+    private List<WebElement> productPrice;
+
+    public List<WebElement> getProductNames() {
+        return productNames;
+    }
+
+    public List<WebElement> getProductPrice() {
+        return productPrice;
+    }
+
     public WebElement getSelectProductOption() {
         return selectProductOption;
     }
@@ -283,7 +299,7 @@ public class Locators extends UI_Methods {
                 return this.cartItemList;
             case "referenceOption":
                 return this.referenceOption;
-            case"selectProduct":
+            case "selectProduct":
                 return this.selectProduct;
         }
         return null;
