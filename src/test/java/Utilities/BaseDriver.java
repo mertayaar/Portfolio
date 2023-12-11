@@ -1,0 +1,81 @@
+package Utilities;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.safari.SafariDriver;
+import org.testng.reporters.jq.Main;
+
+
+import java.time.Duration;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+public class BaseDriver {
+
+    private static ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
+    private static ThreadLocal<String> browserName = new ThreadLocal<>();
+
+    public static WebDriver getDriver() {
+        if (browserName.get() == null) {
+            browserName.set("chrome");
+        }
+        if (threadDriver.get() == null) {
+            switch (browserName.get()) {
+                case "chrome":
+                    ChromeOptions options = new ChromeOptions();
+                    if (!runningFromIntellij()) {
+                        options.addArguments("--headless", "--no-sandbox", "--disable-dev-shm-usage", "--disable-gpu", "--window-size=1400,2400");
+                    }
+                    threadDriver.set(new ChromeDriver(options));
+                    break;
+                case "firefox":
+                    threadDriver.set(new FirefoxDriver());
+                    break;
+                case "edge":
+                    threadDriver.set(new EdgeDriver());
+                    break;
+                case "safari":
+                    threadDriver.set(new SafariDriver());
+                    break;
+                default:
+                    threadDriver.set(new ChromeDriver());
+
+            }
+
+            Logger logger = Logger.getLogger("");
+            logger.setLevel(Level.SEVERE);
+
+        }
+        threadDriver.get().manage().window().maximize();
+        threadDriver.get().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
+        return threadDriver.get();
+
+    }
+
+    public static void quitDriver() {
+
+        if (threadDriver.get() != null) {
+            threadDriver.get().quit();
+            threadDriver.set(null);
+        }
+
+
+    }
+
+    public static void setBrowserName(String browser) {
+        browserName.set(browser.toLowerCase());
+    }
+
+    public static boolean runningFromIntellij() {
+        boolean intellij = true;
+        try {
+            intellij = Main.class.getClassLoader().loadClass("com.intellij.rt.execution.application.AppMainV2") != null;
+        } catch (ClassNotFoundException e) {
+            System.out.println("e = " + e);
+        }
+        return intellij;
+    }
+}
