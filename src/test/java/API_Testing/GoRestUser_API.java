@@ -59,6 +59,7 @@ public class GoRestUser_API {
 
     @Test(priority = 2)
     void createNewUser() {
+
         user = new User(randomName(), randomEmail(), "male", "active");
         userFromResponse = given()
                 .spec(requestSpecification)

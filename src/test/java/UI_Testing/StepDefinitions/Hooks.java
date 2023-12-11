@@ -1,6 +1,7 @@
 package UI_Testing.StepDefinitions;
 
 import Utilities.BaseDriver;
+import Utilities.ExcelUtilities;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
@@ -32,7 +33,7 @@ public class Hooks {
 
             BaseDriver.quitDriver();
 
-//        ExcelUtilities.writeInExcel("src/test/java/ApachePOI/Resources/ScenarioResult.xlsx",scenario,startTime,endTime,duration);
+            ExcelUtilities.writeInExcel("test-output/ScenarioResult.xlsx", scenario, startTime, endTime, duration);
 
         }
         BaseDriver.quitDriver();
