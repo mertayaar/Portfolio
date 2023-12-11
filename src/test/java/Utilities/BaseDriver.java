@@ -6,6 +6,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
+import org.testng.reporters.jq.Main;
 
 
 import java.time.Duration;
@@ -69,7 +70,12 @@ public class BaseDriver {
     }
 
     public static boolean runningFromIntellij() {
-        String classpath = System.getProperty("java.class.path");
-        return classpath.contains("idea_rt.jar");
+        boolean intellij = true;
+        try {
+            intellij = Main.class.getClassLoader().loadClass("com.intellij.rt.execution.application.AppMainV2") != null;
+        } catch (ClassNotFoundException e) {
+            System.out.println("e = " + e);
+        }
+        return intellij;
     }
 }
