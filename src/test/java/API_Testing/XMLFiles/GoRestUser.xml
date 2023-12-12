@@ -3,6 +3,11 @@
 <suite name="All Test Suite">
     <test name="GoRest User API Test">
         <classes>
-        <class name="API_Testing.GoRestUser_API"> </class></classes>
+        <class name="API_Testing.GoRestUser_API"> </class>
+        <class name="API_Testing.GoRestUser_ApachePOI"> </class>
+
+        </classes>
+
     </test>
+
 </suite>
