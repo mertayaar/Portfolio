@@ -15,9 +15,11 @@ public class DBUtilities {
 
     @BeforeTest
     public static void DBConnection() {
-        String url = "jdbc:mysql://localhost:3306/prestashop";
-        String userName = "root";
-        String password = "root1234";
+
+        // TODO Add url, username and pw
+        String url = "";
+        String userName = "";
+        String password = "";
 
         try {
             con = DriverManager.getConnection(url, userName, password);

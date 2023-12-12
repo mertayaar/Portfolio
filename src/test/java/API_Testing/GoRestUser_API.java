@@ -59,21 +59,21 @@ public class GoRestUser_API {
 
     @Test(priority = 2)
     void createNewUser() {
-            user = new User(randomName(), randomEmail(), "male", "active");
-            userFromResponse = given()
-                    .spec(requestSpecification)
-                    .body(user)
-                    .when()
-                    .post()
-                    .then()
-                    .spec(responseSpecification)
-                    .statusCode(201)
-                    .body("email", equalTo(user.getEmail()))
-                    .extract().as(User.class);
+        user = new User(randomName(), randomEmail(), "male", "active");
+        userFromResponse = given()
+                .spec(requestSpecification)
+                .body(user)
+                .when()
+                .post()
+                .then()
+                .spec(responseSpecification)
+                .statusCode(201)
+                .body("email", equalTo(user.getEmail()))
+                .extract().as(User.class);
 
     }
 
-    @Test(dependsOnMethods = "createNewUser",priority = 3)
+    @Test(dependsOnMethods = "createNewUser", priority = 3)
     void createNewUserNegativeTest() {
         user.setName(randomName());
         user.setGender("female");
@@ -89,7 +89,7 @@ public class GoRestUser_API {
                 .body("[0].message", equalTo("has already been taken"));
     }
 
-    @Test(dependsOnMethods = "createNewUser",priority = 4)
+    @Test(dependsOnMethods = "createNewUser", priority = 4)
     void getUserByIDTest() {
         given()
                 .spec(requestSpecification)
@@ -103,7 +103,7 @@ public class GoRestUser_API {
 
     }
 
-    @Test(dependsOnMethods = "createNewUser",priority = 5)
+    @Test(dependsOnMethods = "createNewUser", priority = 5)
     void updateUserTest() {
         userFromResponse.setName(randomName());
 
@@ -121,7 +121,7 @@ public class GoRestUser_API {
 
     }
 
-    @Test(dependsOnMethods = "createNewUser",priority = 6)
+    @Test(dependsOnMethods = "createNewUser", priority = 6)
     void deleteUserTest() {
         given()
                 .spec(requestSpecification)
@@ -132,7 +132,7 @@ public class GoRestUser_API {
                 .statusCode(204);
     }
 
-    @Test(dependsOnMethods = {"createNewUser","deleteUserTest"},priority = 7)
+    @Test(dependsOnMethods = {"createNewUser", "deleteUserTest"}, priority = 7)
     void deleteUserNegativeTest() {
         given()
                 .spec(requestSpecification)
@@ -143,7 +143,7 @@ public class GoRestUser_API {
                 .statusCode(404);
     }
 
-    @Test(dependsOnMethods = {"createNewUser","deleteUserTest"},priority = 18)
+    @Test(dependsOnMethods = {"createNewUser", "deleteUserTest"}, priority = 18)
     void getUserByIDNegativeAfterDeleteTest() {
         given()
                 .spec(requestSpecification)

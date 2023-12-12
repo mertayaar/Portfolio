@@ -25,10 +25,6 @@ public class GoRestUser_ApachePOI {
         return RandomStringUtils.randomAlphabetic(10);
     }
 
-    public String randomEmail() {
-        return RandomStringUtils.randomAlphabetic(6) + "@test.com";
-    }
-
     User user;
     List<User> userFromResponse = new ArrayList<>();
 
