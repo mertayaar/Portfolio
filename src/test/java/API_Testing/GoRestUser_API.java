@@ -59,18 +59,18 @@ public class GoRestUser_API {
 
     @Test(priority = 2)
     void createNewUser() {
+            user = new User(randomName(), randomEmail(), "male", "active");
+            userFromResponse = given()
+                    .spec(requestSpecification)
+                    .body(user)
+                    .when()
+                    .post()
+                    .then()
+                    .spec(responseSpecification)
+                    .statusCode(201)
+                    .body("email", equalTo(user.getEmail()))
+                    .extract().as(User.class);
 
-        user = new User(randomName(), randomEmail(), "male", "active");
-        userFromResponse = given()
-                .spec(requestSpecification)
-                .body(user)
-                .when()
-                .post()
-                .then()
-                .spec(responseSpecification)
-                .statusCode(201)
-                .body("email", equalTo(user.getEmail()))
-                .extract().as(User.class);
     }
 
     @Test(dependsOnMethods = "createNewUser",priority = 3)
@@ -114,7 +114,6 @@ public class GoRestUser_API {
                 .when()
                 .put("/{userID}")
                 .then()
-                .log().body()
                 .body("id", equalTo(userFromResponse.getId()))
                 .body("name", equalTo(userFromResponse.getName()))
                 .statusCode(200);
