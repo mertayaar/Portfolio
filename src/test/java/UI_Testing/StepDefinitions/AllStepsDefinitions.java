@@ -8,13 +8,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.time.Duration;
 import java.util.List;
 
 public class AllStepsDefinitions {
@@ -104,7 +98,7 @@ public class AllStepsDefinitions {
     }
 
     @And("Get Recorded Reference Number on Path {string}")
-    public void getRecorderReferenceNumber(String path) throws InterruptedException {
+    public void getRecorderReferenceNumber(String path) {
         List<WebElement> referenceOptions = locators.getReferenceOption();
         String refNumber = locators.fileReaderMethod(path);
         Select refSelect = new Select(locators.getSelectRef());
