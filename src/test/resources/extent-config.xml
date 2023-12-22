@@ -11,10 +11,10 @@
         <protocol>https</protocol>
 
         <!-- title of the document -->
-        <documentTitle>Campus Report</documentTitle>
+        <documentTitle>Mert Portfolio Report</documentTitle>
 
         <!-- report name - displayed at top-nav -->
-        <reportName>Campus Smoke - Cucumber Report</reportName>
+        <reportName>Portfolio Smoke</reportName>
 
         <!-- global date format override -->  <!-- defaults to yyyy-MM-dd -->
         <dateFormat>yyyy-MM-dd</dateFormat>
